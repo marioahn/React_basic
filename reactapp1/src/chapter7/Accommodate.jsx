@@ -24,12 +24,21 @@ function Accommodate(props) {
         console.log(`Current count value: ${count}`);
     }, [count]); // 위말고, 이 useEffect는 의존성배열이 있다
 
+    useEffect(() => { // count가 변경될 때만 실행됨
+        setIsFull(count1 >= MAX_CAPACITY)
+        console.log(`Current count1 value: ${count1}`);
+    }, [count1]); // 위말고, 이 useEffect는 의존성배열이 있다
+
     return (
         <div>
             <p>{`총 ${count}명 수용했습니다`}</p>
             
             <button onClick={increaseCount} disabled={isFull}>입장</button>
             <button onClick={decreaseCount}>퇴장</button>
+            <br></br>
+
+            <p>총 {count1}번 클릭</p>
+            <button onClick={increaseCount1} disabled={isFull}>클릭</button>
 
             {isFull && <p style={{ color:"red" }}>정원(10)이 가득찼습니다.</p>}
         </div>
